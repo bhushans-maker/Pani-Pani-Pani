@@ -29,21 +29,9 @@ jobs:
           npm run build
           npx cap sync android
 
-      - name: Install Gradle and regenerate wrapper
+      - name: Install Gradle 8.14.3 and regenerate wrapper
         working-directory: android
         run: |
-          curl -fsSL https://services.gradle.org/distributions/gradle-8.10.2-bin.zip -o /tmp/gradle.zip
+          curl -fsSL https://services.gradle.org/distributions/gradle-8.14.3-bin.zip -o /tmp/gradle.zip
           unzip -q /tmp/gradle.zip -d /tmp/gradle-dist
-          /tmp/gradle-dist/gradle-8.10.2/bin/gradle wrapper --gradle-version 8.10.2
-          chmod +x gradlew
-
-      - name: Build debug APK
-        working-directory: android
-        run: ./gradlew assembleDebug
-
-      - name: Upload debug APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: aquaalarm-debug
-          path: android/app/build/outputs/apk/debug/app-debug.apk
-          retention-days: 30
+          /tmp/gradle-dist/gradle-8.14.3/bin/gradle wrapper --gradle-version 8.14.3
