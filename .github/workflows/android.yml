@@ -29,6 +29,12 @@ jobs:
           npm run build
           npx cap sync android
 
+      - name: Fix gradle wrapper jar
+        working-directory: android
+        run: |
+          curl -fsSL -o gradle/wrapper/gradle-wrapper.jar \
+            https://github.com/gradle/gradle/raw/v8.10.0/gradle/wrapper/gradle-wrapper.jar
+
       - name: Make gradlew executable
         run: chmod +x android/gradlew
 
